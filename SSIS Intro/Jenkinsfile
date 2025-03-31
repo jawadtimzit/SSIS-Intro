@@ -35,7 +35,7 @@ pipeline {
             echo "SSIS project built successfully with MSBUILD_2022"
         }
         failure {
-            echo "Build failed. Check logs for errors."
+            echo "Build failed. Check logs for errors.."
         }
     }
 }
