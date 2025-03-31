@@ -37,7 +37,7 @@ pipeline {
             echo "SSIS build completed successfully using devenv."
         }
         failure {
-            echo "Build failed. Check console output for details."
+            echo "Build failed. Check console output for details.."
         }
     }
 }
