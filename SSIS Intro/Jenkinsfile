@@ -1,1 +1,43 @@
+pipeline {
+    agent any
 
+    environment {
+        SOLUTION_FILE = "SSIS Intro.sln"
+        BUILD_DIR = "build_output"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'feature/build-pipeline', url: 'https://github.com/jawadtimzit/SSIS-Intro.git'
+            }
+        }
+
+        stage('Build SSIS Project') {
+            steps {
+                script {
+                    // Make sure path is correct to Visual Studio's MSBuild
+                    def msbuildPath = '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"'
+                    def solution = "\"${env.SOLUTION_FILE}\""
+
+                    bat "${msbuildPath} ${solution} /p:Configuration=Development /p:DeployOnBuild=false /t:Rebuild /nologo /verbosity:minimal"
+                }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: '**/*.dtsx', allowEmptyArchive: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "SSIS build pipeline completed successfully."
+        }
+        failure {
+            echo "Build failed. Check the logs above."
+        }
+    }
+}
