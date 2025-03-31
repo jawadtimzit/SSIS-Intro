@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LAPTOP-PSDCKA3L</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArIqEWqOpLkWan7kI1Os6+AAAAAACAAAAAAAQZgAAAAEAACAAAADDz0WkBEVjSxeEdRQStB3rhI4658ZQW9yDzeWl4dniHwAAAAAOgAAAAAIAACAAAAALIhlVXefx8N8iuhZGhItmVxSbeoCgr+HaduIA9IDAcJAAAACwnkHunxqUyhuF4eSP7MX/e1uSpTrJyuzWBlCkgob40K5RfI/1xN4OB5UYfZgbX81nOLC3Bow7jE5wCpyy9GtX+osX4rcHf15RBElemf0jg2SsoQ/Beje8bceFSxmlcQGgOw38wp51tcNKn/VM6jI11gyEqO8zvMr2eHGnjJxRR0XYv1SMk+pzzwIBMdvsDGxAAAAA/1MtA8zYx0iiMz+NmGd+iLwyTaEntdjjJIc1NuL3SWYRBCukRlMwlA36G3G6QXdcSbqMtbDENwp9pabMyEq9SQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArIqEWqOpLkWan7kI1Os6+AAAAAACAAAAAAAQZgAAAAEAACAAAADzzlnARm1M+O1WzTXppEDg0mfVhG+c54y89YSs/HB8sAAAAAAOgAAAAAIAACAAAACkXIqlKbG2BKj6G4ii/xwJzGlgY9z9eBwWPqcc7QbrTpAAAACyMzK4e9kmQ8wA7ZDwRqsJ5Ff371Vg8DQs9G6nOyvRKbHpqs+IPocAp+W29dqXGSyZMAzALzYRBOrP3mvA33ucpGgWpqI1RJ2Up6HzLflC0oI+SHtfuxlY6dwU0PVMtrelkVSExfARx99Hg47UuavNNXvbQ20sm6XMhImFYtKnebIUE17oWFA8BmN/ILxDxH1AAAAAPes2tXbqrf+aA43W6UEt9if+Y0KvRT22X80aAtgcA/VdKPyoV/YPPx4Zp+jRT6kWIJ/VdQSWcd3uNVPr7EQS3w==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -215,8 +215,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -511,7 +509,12 @@
     </Manifest>
   </DeploymentModelSpecificContent>
   <ControlFlowParts />
-  <Miscellaneous />
+  <Miscellaneous>
+    <ProjectItem>
+      <Name>Jenkinsfile</Name>
+      <FullPath>Jenkinsfile</FullPath>
+    </ProjectItem>
+  </Miscellaneous>
   <Configurations>
     <Configuration>
       <Name>Development</Name>

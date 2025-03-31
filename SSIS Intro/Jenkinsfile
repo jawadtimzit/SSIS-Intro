@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         SOLUTION_FILE = "SSIS Intro.sln"
-        BUILD_DIR = "build_output"
+        VS_PATH = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com"
     }
 
     stages {
@@ -13,14 +13,14 @@ pipeline {
             }
         }
 
-        stage('Build SSIS Project') {
+        stage('Build SSIS Project with devenv') {
             steps {
                 script {
-                    // Make sure path is correct to Visual Studio's MSBuild
-                    def msbuildPath = '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe"'
                     def solution = "\"${env.SOLUTION_FILE}\""
+                    def devenv = "\"${env.VS_PATH}\""
 
-                    bat "${msbuildPath} ${solution} /p:Configuration=Development /p:DeployOnBuild=false /t:Rebuild /nologo /verbosity:minimal"
+                    // Build using Visual Studio IDE (devenv)
+                    bat "${devenv} ${solution} /Rebuild Development"
                 }
             }
         }
@@ -34,10 +34,10 @@ pipeline {
 
     post {
         success {
-            echo "SSIS build pipeline completed successfully."
+            echo "SSIS build completed successfully using devenv."
         }
         failure {
-            echo "Build failed. Check the logs above."
+            echo "Build failed. Check console output for details."
         }
     }
 }
