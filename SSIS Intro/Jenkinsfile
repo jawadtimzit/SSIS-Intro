@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         SOLUTION_FILE = "SSIS Intro.sln"
+        VS_PATH = "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.com"
     }
 
     stages {
@@ -12,30 +13,31 @@ pipeline {
             }
         }
 
-        stage('Build SSIS Project') {
+        stage('Build SSIS Project with devenv') {
             steps {
                 script {
-                    // Get MSBuild tool path from Jenkins Global Tool Configuration
-                    def msbuild = tool name: 'MSBUILD_2022', type: 'hudson.plugins.msbuild.MsBuildInstallation'
-                    
-                    bat "\"${msbuild}\" \"${env.SOLUTION_FILE}\" /t:Rebuild /p:Configuration=Development /nologo /verbosity:minimal"
+                    def solution = "\"${env.SOLUTION_FILE}\""
+                    def devenv = "\"${env.VS_PATH}\""
+
+                    // Build using Visual Studio IDE (devenv)
+                    bat "${devenv} ${solution} /Rebuild Development"
                 }
             }
         }
 
         stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: '**/*.dtsx', fingerprint: true
+                archiveArtifacts artifacts: '**/*.dtsx', allowEmptyArchive: true
             }
         }
     }
 
     post {
         success {
-            echo "SSIS project built successfully with MSBUILD_2022"
+            echo "SSIS build completed successfully using devenv."
         }
         failure {
-            echo "Build failed. Check logs for errors.."
+            echo "Build failed. Check console output for details.."
         }
     }
 }
