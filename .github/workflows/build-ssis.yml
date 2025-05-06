@@ -2,7 +2,7 @@ name: Build SSIS Project
 
 on:
   push:
-    branches: [main, feature/**]
+    branches: [ main, feature/** ]
 
 jobs:
   build-ssis:
