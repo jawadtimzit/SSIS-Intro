@@ -1,0 +1,16 @@
+name: Build SSIS Project With Azure VM
+
+on:
+  push:
+    branches: [ main, feature/** ]
+
+jobs:
+  build-ssis:
+    runs-on: [self-hosted, windows,x64,azure-ssis]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build SSIS project
+        run: |
+          & "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.com" "SSIS Intro.sln" /Build Release
